@@ -33,9 +33,9 @@ const TodoItem = ({ todo }) => {
           autoFocus
         />
       ) : (
-        <TouchableOpacity onLongPress={() => setIsEditing(true)} style={styles.titleContainer}>
+        <TouchableOpacity onPress={() => setIsEditing(true)} style={styles.titleContainer}>
           <Text style={[styles.title, { textDecorationLine: todo.completed ? 'line-through' : 'none', color: todo.completed ? '#aaa' : '#333' }]}>
-            {todo.title}
+            {text}
           </Text>
         </TouchableOpacity>
       )}

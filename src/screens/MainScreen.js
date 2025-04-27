@@ -5,7 +5,7 @@ import { setTodos, setFilter, setSort } from '../slice/todoSlice';
 import TodoItem from '../components/TodoItem';
 import axios from 'axios';
 
-// Import icons
+// Importing icons
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
