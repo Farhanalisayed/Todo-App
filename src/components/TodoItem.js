@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { toggleTodo, deleteTodo, editTodo } from '../slice/todoSlice';
+import { FaTrash, FaRegSquare, FaCheckSquare } from 'react-icons/fa';
 
 const TodoItem = ({ todo }) => {
   const dispatch = useDispatch();
@@ -16,9 +17,11 @@ const TodoItem = ({ todo }) => {
   return (
     <View style={styles.item}>
       <TouchableOpacity onPress={() => dispatch(toggleTodo(todo.id))}>
-        <Text style={[styles.checkbox, { color: todo.completed ? '#4caf50' : '#999' }]}>
-          {todo.completed ? '✔️' : '⬜'}
-        </Text>
+        {todo.completed ? (
+          <FaCheckSquare size={24} color="#4caf50" />
+        ) : (
+          <FaRegSquare size={24} color="#999" />
+        )}
       </TouchableOpacity>
 
       {isEditing ? (
@@ -38,7 +41,7 @@ const TodoItem = ({ todo }) => {
       )}
 
       <TouchableOpacity onPress={() => dispatch(deleteTodo(todo.id))}>
-        <Text style={styles.delete}>🗑️</Text>
+        <FaTrash size={22} color="red" style={{ marginLeft: 10 }} />
       </TouchableOpacity>
     </View>
   );
@@ -46,10 +49,8 @@ const TodoItem = ({ todo }) => {
 
 const styles = StyleSheet.create({
   item: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff', padding: 12, borderRadius: 10, marginVertical: 5, shadowColor: '#000', shadowOpacity: 0.1, shadowRadius: 4, elevation: 2 },
-  checkbox: { fontSize: 24 },
   titleContainer: { flex: 1, marginLeft: 10 },
   title: { fontSize: 16 },
-  delete: { fontSize: 22, marginLeft: 10, color: 'red' },
   input: { borderBottomWidth: 1, flex: 1, marginLeft: 10, fontSize: 16, borderColor: '#ccc' },
 });
 

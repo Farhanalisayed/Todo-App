@@ -5,6 +5,10 @@ import { setTodos, setFilter, setSort } from '../slice/todoSlice';
 import TodoItem from '../components/TodoItem';
 import axios from 'axios';
 
+// Import icons
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+
 const MainScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const { items, filter, sort } = useSelector(state => state.todos);
@@ -36,17 +40,23 @@ const MainScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Todo List 📋</Text>
+      <View style={styles.header}>
+        <Icon name="clipboard-list" size={28} color="#333" />
+        <Text style={styles.headerText}>Todo List</Text>
+      </View>
 
       <View style={styles.topBar}>
         <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('AddTodo')}>
-          <Text style={styles.buttonText}>➕ Add Todo</Text>
+          <Icon name="plus" size={16} color="#fff" />
+          <Text style={styles.buttonText}> Add Todo</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={() => dispatch(setSort('Recent'))}>
-          <Text style={styles.buttonText}>🕒 Recent</Text>
+          <Icon name="clock" size={16} color="#fff" />
+          <Text style={styles.buttonText}> Recent</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={() => dispatch(setSort('ID'))}>
-          <Text style={styles.buttonText}>🔢 Sort by ID</Text>
+          <MaterialIcons name="format-list-numbered" size={20} color="#fff" />
+          <Text style={styles.buttonText}> Sort by ID</Text>
         </TouchableOpacity>
       </View>
 
@@ -81,9 +91,10 @@ const MainScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#f0f8ff', padding: 20 },
-  header: { fontSize: 26, fontWeight: 'bold', textAlign: 'center', marginBottom: 15, color: '#333' },
+  header: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom: 15 },
+  headerText: { fontSize: 26, fontWeight: 'bold', marginLeft: 8, color: '#333' },
   topBar: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 15 },
-  button: { backgroundColor: '#4caf50', padding: 10, borderRadius: 8 },
+  button: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#4caf50', padding: 10, borderRadius: 8 },
   buttonText: { color: 'white', fontWeight: 'bold' },
   filters: { flexDirection: 'row', justifyContent: 'space-around', marginVertical: 10 },
   filterButton: { paddingVertical: 8, paddingHorizontal: 16, backgroundColor: '#eee', borderRadius: 20 },

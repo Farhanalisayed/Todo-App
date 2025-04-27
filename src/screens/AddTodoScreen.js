@@ -20,13 +20,13 @@ const AddTodoScreen = ({ navigation }) => {
   const handleChangeText = (value) => {
     setText(value);
     if (error) {
-      setError(''); // Clear error when user starts typing
+      setError('');
     }
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Add New Todo ✏️</Text>
+      <Text style={styles.title}>Add New Todo</Text>
       <TextInput
         placeholder="What do you want to do?"
         value={text}
@@ -35,7 +35,7 @@ const AddTodoScreen = ({ navigation }) => {
       />
       {error ? <Text style={styles.errorText}>{error}</Text> : null}
       <TouchableOpacity style={styles.button} onPress={handleAddTodo}>
-        <Text style={styles.buttonText}>➕ Add</Text>
+        <Text style={styles.buttonText}>Add</Text>
       </TouchableOpacity>
     </View>
   );
