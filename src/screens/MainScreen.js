@@ -19,10 +19,15 @@ const MainScreen = ({ navigation }) => {
   }, []);
 
   const fetchTodos = async () => {
+    try{
     setLoading(true);
     const res = await axios.get('https://jsonplaceholder.typicode.com/todos?_limit=20');
     dispatch(setTodos(res.data));
     setLoading(false);
+    }
+    catch (error) {
+      console.error('API failed:', error);
+    }    
   };
 
   const filteredTodos = items.filter(todo => {

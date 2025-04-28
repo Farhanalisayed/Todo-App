@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { v4 as uuidv4 } from 'uuid';
 
 const todoSlice = createSlice({
   name: 'todos',
@@ -17,8 +16,10 @@ const todoSlice = createSlice({
       }));
     },
     addTodo(state, action) {
+      const newId = state.items.length ? state.items.length + 1 : 1;
+
       state.items.unshift({
-        id: uuidv4(),
+        id: newId,
         title: action.payload,
         completed: false,
         created_at: new Date().toISOString(),
